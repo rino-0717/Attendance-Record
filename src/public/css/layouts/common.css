@@ -1,0 +1,22 @@
+.header {
+    background: #fff;
+}
+
+.header__inner {
+    margin: 0 auto;
+    padding: 20px 15px;
+    max-width: 1230px;
+}
+
+.header__logo {
+    color: #070606;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.footer {
+    background-color: #fff;
+    text-align: center;
+    height: 100vh;
+}
