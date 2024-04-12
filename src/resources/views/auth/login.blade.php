@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/attendance/login.css')}}">
+<link rel="stylesheet" href="{{ asset('css/auth/login.css')}}">
 @endsection
 
 @section('link')
@@ -35,7 +35,7 @@
             <button type="submit">ログイン</button>
         </div>
         <div class="login-prompt">アカウントをお持ちでない方はこちら
-            <br><a href="/auth/register.blade.php">会員登録</a></br>
+            <br><a href="/register">会員登録</a></br>
         </div>
     </form>
 </div>

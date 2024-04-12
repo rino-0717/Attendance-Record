@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Atte</title>
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/layouts/common.css') }}" />
     @yield('css')
 </head>
 
@@ -23,11 +23,10 @@
     <main>
         @yield('content')
     </main>
-    <footer class="footer">
-        <div class="footer">
+    <footer>
+        <div class="surface-ground text-center mt-2 py-2">
         <p>Atte, inc.</p>
         </div>
     </footer>
 </body>
 
-</html>

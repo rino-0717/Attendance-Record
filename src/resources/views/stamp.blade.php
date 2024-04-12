@@ -1,15 +1,17 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/attendance.css')}}">
+<link rel="stylesheet" href="{{ asset('css/stamp.css')}}">
 @endsection
 
 @section('link')
-<a class="header__link" href="/register">attendance</a>
+<a class="header__link" href="/stamp">stamp</a>
 @endsection
 
 @section('content')
-<body>
+
+<div class="register-form">
+    <h2>会員登録</h2>
     <div class="header">
         <a href="home.html">ホーム</a>
         <a href="date_list.html">日付一覧</a>
@@ -22,7 +24,7 @@
         <button id="break_start_time">休憩開始</button>
         <button id="break_end_time">休憩終了</button>
     </div>
-</body>
+</div>
 </html>
 
 @endsection

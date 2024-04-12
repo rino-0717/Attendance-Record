@@ -5,19 +5,6 @@ body {
     padding: 0;
 }
 
-.form-container {
-    background-color: #fff;
-    margin: 50px auto;
-    padding: 20px;
-    width: 300px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.register-form {
-    justify-content: center;
-    align-items: center;
-}
-
 h2 {
     text-align: center;
     color: #333;
@@ -26,11 +13,7 @@ h2 {
 .form-group {
     margin-bottom: 20px;
     color: #096fdd;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
+    width: 50%;
 }
 
 .form-group input[type="text"],
@@ -45,7 +28,7 @@ h2 {
 }
 
 button[type="submit"] {
-    width: 100%;
+    width: 50%;
     background-color: #1223d9;
     color: white;
     padding: 10px;
@@ -61,6 +44,7 @@ button[type="submit"]:hover {
 .login-prompt {
     font-size: 16px;
     margin: 20px 0;
+    color: #585555;
 }
 
 .login-prompt a {
@@ -69,3 +53,4 @@ button[type="submit"]:hover {
     text-decoration: none;
     text-align: center;
 }
+

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\AuthenticatedSessionController;
+use App\Http\Controllers\StampedController;
+use App\Http\Controllers\AttendancedController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +27,10 @@ Route::post('/register', [RegisteredUserController::class, 'register'])->name('r
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login.create');
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login.store');
 Route::post('/login', [AuthenticatedSessionController::class, 'destroy'])->name('login.destroy');
+
+// 打刻
+Route::get('/stamp', [StampedController::class, 'create'])->name('stamps.create');
+Route::post('/stamp', [StampedController::class, 'store'])->name('stamps.store');
+
+// 日付別勤怠情報一覧
+Route::get('/attendances', [AttendancedController::class, 'index'])->name('attendances.index');
