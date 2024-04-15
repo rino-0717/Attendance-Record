@@ -34,10 +34,14 @@
     background-color: var(--surface-ground) !important;
 }
 
-p{
-    font-size: .75rem !important;
-    text-decoration: none;
-    color: inherit;
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     background-color: #fff;
-    box-sizing: border-box;
+    /* 背景色はお好みで */
+    color: rgb(3, 3, 3);
+    /* テキスト色はお好みで */
+    text-align: center;
 }

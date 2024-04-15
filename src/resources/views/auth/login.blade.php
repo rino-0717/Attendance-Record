@@ -2,11 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/auth/login.css')}}">
-@endsection
-
-@section('link')
-<a class="header__link" href="/login">login</a>
-@endsection
+@section('css')
 
 @section('content')
 <div class="register-form">

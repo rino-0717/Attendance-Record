@@ -5,61 +5,56 @@ body {
     padding: 0;
 }
 
-.form-container {
-    background-color: #fff;
-    margin: 50px auto;
-    padding: 20px;
-    width: 300px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
 h2 {
     text-align: center;
     color: #333;
 }
 
-.form-group {
+/* register-form__groupクラスを追加して、CSSの整合性を保つ */
+.register-form__group {
     margin-bottom: 20px;
+    color: #096fdd;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group input[type="password"] {
+/* register-form__inputクラスにスタイルを適用 */
+.register-form__input {
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    /* 入力フィールドの内側のpaddingを含めた幅を100%にする */
 }
 
 button[type="submit"] {
-    width: 100%;
+    width: 50%;
     background-color: #1223d9;
     color: white;
     padding: 10px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    display: block;
+    /* ボタンを中央に配置 */
+    margin: 0 auto;
+    /* 自動的に左右のマージンを設定 */
 }
 
 button[type="submit"]:hover {
-    background-color: #1223d9;
+    background-color: #2284d3;
 }
 
 .login-prompt {
     font-size: 16px;
     margin: 20px 0;
+    color: #585555;
+    text-align: center;
+    /* テキストを中央揃えに */
 }
 
 .login-prompt a {
     color: #1223d9;
-    /* リンクの色 */
     text-decoration: none;
-    text-align: center;
 }

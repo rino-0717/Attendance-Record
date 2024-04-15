@@ -1,0 +1,56 @@
+.header {
+    background: #fff;
+}
+
+.header__inner {
+    margin: 0 auto;
+    padding: 20px 15px;
+    max-width: 1230px;
+}
+
+.header__logo {
+    color: #070606;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 24px;
+    width: 1000px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-prompt{
+    color: #070606;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: right;
+}
+
+.mt-2 {
+    margin-top: 0.5rem !important;
+}
+
+.py-2 {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.surface-ground {
+    background-color: var(--surface-ground) !important;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    /* 背景色はお好みで */
+    color: rgb(3, 3, 3);
+    /* テキスト色はお好みで */
+    text-align: center;
+}
