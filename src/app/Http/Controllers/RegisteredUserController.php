@@ -24,9 +24,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        // ログイン処理
-        auth()->login($user);
-        return redirect()->route('login');
+        return redirect('/login')->with('success', 'User registered successfully');
     }
 
     //バリデーション

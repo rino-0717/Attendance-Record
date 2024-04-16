@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\StampedController;
@@ -16,10 +17,9 @@ use App\Http\Controllers\AttendancedController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 //新規登録
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('register.create');
-Route::post('/register', [RegisteredUserController::class, 'store'])->name('register.store');
+Route::post('/register', [RegisteredUserController::class, 'store'])->name('login');
 Route::post('/register', [RegisteredUserController::class, 'register'])->name('register.store');
 
 
@@ -34,3 +34,6 @@ Route::post('/stamp', [StampedController::class, 'store'])->name('stamps.store')
 
 // 日付別勤怠情報一覧
 Route::get('/attendances', [AttendancedController::class, 'index'])->name('attendances.index');
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

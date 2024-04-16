@@ -44,6 +44,11 @@
                 </div>
                 <div class="form-group">
                     <button type="submit">登録</button>
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                 </div>
                 <div class="login-prompt">アカウントをお持ちの方はこちらから
                     <br><a href="/login">ログイン</a></br>
@@ -52,10 +57,3 @@
         </div>
     </div>
 @endsection('content')
-
-
-
-
-
-
-
