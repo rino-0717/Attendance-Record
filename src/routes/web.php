@@ -17,14 +17,13 @@ use App\Http\Controllers\AttendancedController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 //新規登録
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('register.create');
 Route::post('/register', [RegisteredUserController::class, 'store'])->name('login');
-Route::post('/register', [RegisteredUserController::class, 'register'])->name('register.store');
-
 
 // ログイン
-Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login.create');
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login.store');
 Route::post('/login', [AuthenticatedSessionController::class, 'destroy'])->name('login.destroy');
 

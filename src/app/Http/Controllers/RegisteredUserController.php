@@ -17,24 +17,13 @@ class RegisteredUserController extends Controller
     }
 
     //ユーザー新規登録処理
-    public function store(Request $request)
+    public function store(RegisterRequest $request)
     {
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        return redirect('/login')->with('success', 'User registered successfully');
-    }
-
-    //バリデーション
-    public function register(RegisterRequest $request)
-    {
-        $user = User::create([
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-        ]);
-        return redirect()->route('login')->with('success', 'ユーザー情報ログイン。');
+        return redirect()->route('/login')->with('success', 'アカウントが正常に作成されました。');
     }
 }

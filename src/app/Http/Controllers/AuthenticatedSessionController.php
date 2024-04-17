@@ -15,7 +15,7 @@ class AuthenticatedSessionController extends Controller
     }
 
     // ユーザーログイン処理
-    public function store(Request $request)
+    public function store(LoginRequest $request)
     {
         $credentials = $request->validate([
             'email' => 'required|email',
@@ -24,12 +24,13 @@ class AuthenticatedSessionController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/'); // ログイン成功時のリダイレクト先
+            return redirect()->intended('/stamp'); // ログイン成功時のリダイレクト先
         }
 
         return back()->withErrors([
             'email' => '登録されたメールアドレスと一致しません。',
-        ])->onlyInput('email');
+            'password' => '登録されたパスワードと一致しません。',
+        ])->onlyInput(['email', 'password']);
     }
 
     public function destroy(Request $request)
@@ -38,7 +39,6 @@ class AuthenticatedSessionController extends Controller
 
     $request->session()->invalidate();
     $request->session()->regenerateToken();
-
-    return redirect('/login'); // ログアウト後のリダイレクト先
+        return redirect('/login'); // ログアウト後のリダイレクト先
     }
 }

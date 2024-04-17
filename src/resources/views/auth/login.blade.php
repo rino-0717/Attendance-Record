@@ -8,7 +8,7 @@
 <div class="register-form">
     <h2 class="register-form__heading content__heading">ログイン</h2>
         <div class="register-form__inner">
-            <form class="register-form__form" action="/register" method="post">
+            <form class="register-form__form" action="{{ route('login') }}" method="post">
             @csrf
 
             <div class="register-form__group">
