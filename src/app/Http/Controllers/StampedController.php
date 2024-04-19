@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Record;
-use App\Models\Attendance; // 勤怠管理用のモデル（例）
+use App\Models\Punch;
+use App\Models\Attendance;
 use Carbon\Carbon;
 
 class StampedController extends Controller
@@ -22,13 +22,13 @@ class StampedController extends Controller
         ]);
 
         // Stampモデルのインスタンスを作成し、データベースに保存
-        $stamp = new Record();
-        $stamp->type = $request->type;
-        $stamp->user_id = auth()->user()->id; // 認証済みユーザーのIDを使用
-        $stamp->save();
-
+        $punch = new Punch();
+        $punch->type = $request->type;
+        $punch->user_id = auth()->user()->id; // 認証済みユーザーのIDを使用
+        $punch->punched_at = now();
+        $punch->save();
         // 保存後、適切なリダイレクト先やメッセージを返す
-        return redirect()->route('/stamp')->with('success', '打刻が完了しました。');
+        return redirect()->route('/stamp')->with('status', '打刻が完了しました。');
     }
 
     // 日を跨いだ時点で翌日の出勤操作に切り替える
@@ -47,5 +47,45 @@ class StampedController extends Controller
             ['punched_in_at' => $now] // 該当するレコードがなければ作成、あれば更新
         );
         return response()->json($attendance);
+    }
+
+        // 勤務開始
+    public function startWork(Request $request)
+    {
+        $attendance = new Attendance();
+        $attendance->user_id = auth()->user()->id; // 認証済みユーザーのID
+        $attendance->start_time = now();
+        $attendance->save();
+        return redirect()->back()->with('message', '勤務開始を記録しました。');
+    }
+
+    // 勤務終了
+    public function endWork(Request $request)
+    {
+        $attendance = new Attendance();
+        $attendance->user_id = auth()->user()->id; // 認証済みユーザーのID
+        $attendance->start_time = now();
+        $attendance->save();
+        return redirect()->back()->with('message', '勤務終了を記録しました。');
+    }
+
+    // 休憩開始
+    public function startBreak(Request $request)
+    {
+        $attendance = new Attendance();
+        $attendance->user_id = auth()->user()->id; // 認証済みユーザーのID
+        $attendance->start_time = now();
+        $attendance->save();
+        return redirect()->back()->with('message', '休憩開始を記録しました。');
+    }
+
+    // 休憩終了
+    public function endBreak(Request $request)
+    {
+        $attendance = new Attendance();
+        $attendance->user_id = auth()->user()->id; // 認証済みユーザーのID
+        $attendance->start_time = now();
+        $attendance->save();
+        return redirect()->back()->with('message', '休憩終了を記録しました。');
     }
 }

@@ -24,21 +24,12 @@ class AuthenticatedSessionController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/stamp'); // ログイン成功時のリダイレクト先
+            return redirect()->route('stamp')->with('success', 'ログインに成功しました。'); // ログイン成功時のリダイレクト先
         }
 
         return back()->withErrors([
             'email' => '登録されたメールアドレスと一致しません。',
             'password' => '登録されたパスワードと一致しません。',
         ])->onlyInput(['email', 'password']);
-    }
-
-    public function destroy(Request $request)
-    {
-        Auth::logout();
-
-    $request->session()->invalidate();
-    $request->session()->regenerateToken();
-        return redirect('/login'); // ログアウト後のリダイレクト先
     }
 }

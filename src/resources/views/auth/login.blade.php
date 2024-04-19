@@ -8,6 +8,12 @@
 <div class="register-form">
     <h2 class="register-form__heading content__heading">ログイン</h2>
         <div class="register-form__inner">
+            <!-- ログイン成功時のメッセージ -->
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
             <form class="register-form__form" action="{{ route('login') }}" method="post">
             @csrf
 
@@ -35,4 +41,4 @@
         </div>
     </form>
 </div>
-@endsection('content')
+@endsection
