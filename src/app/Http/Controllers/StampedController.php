@@ -27,7 +27,7 @@ class StampedController extends Controller
     {
         $record = new Record();
         $record->user_id = auth()->user()->id; // 認証済みユーザーのID
-        $record->start_time = now();
+        $record->work_start_time = now();
         $record->type = $request->input('work_start_time'); // ボタンの種類（例: 'work_start'）
         $record->save();
         return back()->with('status', '勤務開始が記録されました。');
@@ -38,7 +38,7 @@ class StampedController extends Controller
     {
         $record = new Record();
         $record->user_id = auth()->user()->id; // 認証済みユーザーのID
-        $record->start_time = now();
+        $record->work_end_time = now();
         $record->type = $request->input('work_end_time');
         $record->save();
         return back()->with('status', '勤務終了が記録されました。');
@@ -49,7 +49,7 @@ class StampedController extends Controller
     {
         $record = new Record();
         $record->user_id = auth()->user()->id; // 認証済みユーザーのID
-        $record->start_time = now();
+        $record->break_start_time = now();
         $record->type = $request->input('break_start_time');
         $record->save();
         return back()->with('status', '休憩開始が記録されました。');
@@ -60,7 +60,7 @@ class StampedController extends Controller
     {
         $record = new Record();
         $record->user_id = auth()->user()->id; // 認証済みユーザーのID
-        $record->start_time = now();
+        $record->break_end_time = now();
         $record->type = $request->input('break_end_time');
         $record->save();
         return back()->with('status', '休憩終了が記録されました。');
