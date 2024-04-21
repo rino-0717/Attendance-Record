@@ -15,21 +15,18 @@ class AuthenticatedSessionController extends Controller
     }
 
     // ユーザーログイン処理
-    public function store(LoginRequest $request)
+    public function store(Request $request)
     {
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
-
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->route('stamp')->with('success', 'ログインに成功しました。'); // ログイン成功時のリダイレクト先
+            return redirect()->intended('/stamp'); // ログイン成功時のリダイレクト先
         }
-
         return back()->withErrors([
             'email' => '登録されたメールアドレスと一致しません。',
-            'password' => '登録されたパスワードと一致しません。',
-        ])->onlyInput(['email', 'password']);
+        ])->onlyInput('email');
     }
 }

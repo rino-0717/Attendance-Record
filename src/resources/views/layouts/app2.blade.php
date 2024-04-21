@@ -12,17 +12,16 @@
 </head>
 
 <body>
-    <header class="header">
+    <div class="header">
         <div class="header__inner">
-            <a class="header__logo" href="/">
-                Atte
-            </a>
+            <h2>Atte</h2>
+        </div>
             <div class="header-prompt">
                 <a href="/stamp">打刻ページ</a>
                 <a href="/attendances">日付一覧</a>
                 <a href="/login">ログアウト</a>
             </div>
-    </header>
+    </div>
 
     <main>
         @yield('content')

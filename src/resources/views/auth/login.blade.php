@@ -14,9 +14,8 @@
                     {{ session('success') }}
                 </div>
             @endif
-            <form class="register-form__form" action="{{ route('login') }}" method="post">
+            <form class="register-form__form" action="/login" method="post">
             @csrf
-
             <div class="register-form__group">
                 <input class="register-form__input" type="mail" name="email" id="email" placeholder="メールアドレス">
                 <p class="register-form__error-message">

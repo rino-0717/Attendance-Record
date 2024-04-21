@@ -25,15 +25,15 @@ Route::post('register', [RegisteredUserController::class, 'register']);
 
 // ログイン
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
-Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login.store');
+Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login.store');
 
 // 打刻
 Route::get('/stamp', [StampedController::class, 'create'])->name('stamps.create');
-Route::post('/stamp', [StampedController::class, 'store'])->name('punch.store');
-Route::post('/start-work', [AttendanceController::class, 'startWork'])->name('stamp.startWork');
-Route::post('/end-work', [AttendanceController::class, 'endWork'])->name('stamp.endWork');
-Route::post('/start-break', [AttendanceController::class, 'startBreak'])->name('stamp.startBreak');
-Route::post('/end-break', [AttendanceController::class, 'endBreak'])->name('stamp.endBreak');
+Route::post('/stamp', [StampedController::class, 'punchIn']);
+Route::post('/record-time', [StampedController::class, 'store'])->name('record.store');
+Route::post('/end-work', [StampedController::class, 'endWork'])->name('stamp.endWork');
+Route::post('/start-break', [StampedController::class, 'startBreak'])->name('stamp.startBreak');
+Route::post('/end-break', [StampedController::class, 'endBreak'])->name('stamp.endBreak');
 
 // 日付別勤怠情報一覧
 Route::get('/attendances', [AttendanceController::class, 'index'])->name('attendance.index');
