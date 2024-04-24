@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\StampedController;
+use App\Http\Requests\StampRequest;
 use App\Http\Controllers\AttendanceController;
 
 /*

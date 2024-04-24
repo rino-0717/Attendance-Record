@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Record;
 use App\Models\User;
+use App\Http\Requests\StampRequest;
 use Carbon\Carbon;
 
 class StampedController extends Controller
@@ -23,13 +24,14 @@ class StampedController extends Controller
     }
 
         // 勤務開始
-    public function store(Request $request)
+    public function store(StampRequest $request)
     {
         $record = new Record();
         $record->user_id = auth()->user()->id; // 認証済みユーザーのID
         $record->work_start_time = now();
         $record->type = $request->input('work_start_time'); // ボタンの種類（例: 'work_start'）
         $record->save();
+        $validated = $request->validated();
         return back()->with('status', '勤務開始が記録されました。');
     }
 
