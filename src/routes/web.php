@@ -30,7 +30,7 @@ Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('l
 // 打刻
 Route::get('/stamp', [StampedController::class, 'create'])->name('stamps.create');
 Route::post('/stamp', [StampedController::class, 'punchIn']);
-Route::post('/record-time', [StampedController::class, 'store'])->name('record.store');
+Route::post('/record-time', [StampedController::class, 'store'])->name('stamp.store');
 Route::post('/end-work', [StampedController::class, 'endWork'])->name('stamp.endWork');
 Route::post('/start-break', [StampedController::class, 'startBreak'])->name('stamp.startBreak');
 Route::post('/end-break', [StampedController::class, 'endBreak'])->name('stamp.endBreak');

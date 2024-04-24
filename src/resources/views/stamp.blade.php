@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
     <h2>打刻画面</h2>
-    <form action="{{ route('record.store') }}" method="POST">
+    <form action="{{ route('stamp.store') }}" method="POST">
         @csrf
             <div class="button-container">
                 <input type="hidden" name="work_start_time" value="work_start">
