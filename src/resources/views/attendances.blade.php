@@ -5,26 +5,55 @@
 @section('css')
 
 @section('content')
-    <div class="main">
+<h2>2021年11月1日</h2>
+    <div class="attendance_container">
         <table>
-            <tr>
-                <th>Data</th>
-            </tr>
-            @foreach ($users as $user)
-            <tr>
-                <td>
-                    {{$user->getDetail()}}
-                </td>
-            </tr>
-            @endforeach
+            <thead>
+                <tr>
+                    <th>名前</th>
+                    <th>勤務開始</th>
+                    <th>勤務終了</th>
+                    <th>休憩時間</th>
+                    <th>勤務時間</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>テスト太郎</td>
+                    <td>09:30:00</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>テスト次郎</td>
+                    <td>10:00:10</td>
+                    <td>09:29:50</td>
+                    <td></td>
+                    <td>00:30:20</td>
+                </tr>
+                <tr>
+                    <td>テスト三郎</td>
+                    <td>10:00:10</td>
+                    <td>09:29:50</td>
+                    <td></td>
+                    <td>00:30:20</td>
+                </tr>
+                <tr>
+                    <td>テスト四郎</td>
+                    <td>10:00:20</td>
+                    <td>09:29:40</td>
+                    <td></td>
+                    <td>00:30:40</td>
+                </tr>
+                <tr>
+                    <td>テスト五郎</td>
+                    <td>10:00:20</td>
+                    <td>09:29:40</td>
+                    <td></td>
+                    <td>00:30:40</td>
+                </tr>
+            </tbody>
         </table>
-        {{ $users->links() }}
-        <tr>
-            <th>名前</th>
-            <th>勤務開始</th>
-            <th>勤務終了</th>
-            <th>休憩時間</th>
-            <th>勤務時間</th>
-        </tr>
     </div>
 @endsection

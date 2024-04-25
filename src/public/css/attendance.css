@@ -5,7 +5,25 @@ body {
     background-color: #f4f4f4;
 }
 
-.main{
-    color: black;
-    text-align: center;
+.attendance-container{
+    display: flex;
+    flex-direction: column;/* 縦方向に並べる */
+    align-items: center;/* 中央揃え */
+    gap: 30px;/* 行間の間隔 */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+th {
+    text-align: left;
+    background-color: #f0f0f0;
 }
