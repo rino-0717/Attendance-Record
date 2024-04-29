@@ -5,7 +5,11 @@
 @section('css')
 
 @section('content')
-<h2>2021年11月1日</h2>
+<div class="date-picker">
+    <button class="arrow-btn" id="prev-btn">&lt;</button>
+    <h2 class="date">{{ now()->format('Y-m-d') }}</h2>
+    <button class="arrow-btn" id="next-btn">&gt;</button>
+</div>
     <div class="attendance_container">
         <table>
             <thead>
@@ -56,4 +60,34 @@
             </tbody>
         </table>
     </div>
+    <nav class="pagination">
+        <a href="" class="pagination__prev">
+        <span class="visuallyhidden">Previous Page</span>
+        </a>
+        <ul class="pagination__items">
+            <li class="is-active"><a href="">1</a></li>
+            <li><a href="">2</a></li>
+            <li><a href="">3</a></li>
+            <li><a href="">4</a></li>
+            <li><a href="">5</a></li>
+            <li><a href="">6</a></li>
+            <li><a href="">7</a></li>
+            <li><a href="">8</a></li>
+            <li><a href="">9</a></li>
+            <li><a href="">10</a></li>
+            <li><a href="">11</a></li>
+            <li><a href="">12</a></li>
+            <li><a href="">13</a></li>
+            <li><a href="">14</a></li>
+            <li><a href="">15</a></li>
+            <li><a href="">16</a></li>
+            <li><a href="">17</a></li>
+            <li><a href="">18</a></li>
+            <li><a href="">19</a></li>
+            <li><a href="">20</a></li>
+            <li><a href="">21</a></li>
+        </ul>
+    <a href="" class="pagination__arrow pagination__next">
+    <span class="visuallyhidden">Next Page</span></a>
+    </nav>
 @endsection

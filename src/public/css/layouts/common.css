@@ -5,15 +5,17 @@
 .header__inner {
     margin: 0 auto;
     padding: 20px 15px;
-    max-width: 1230px;
+    width: 100%;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 .header__logo {
     color: #070606;
     text-decoration: none;
-    font-weight: bold;
-    font-size: 24px;
-    width: 1000px;
+    font-weight: normal;
+    font-size: 28px;
+    text-decoration: none;
 }
 
 
@@ -44,4 +46,8 @@ footer {
     color: rgb(3, 3, 3);
     /* テキスト色はお好みで */
     text-align: center;
+}
+
+p{
+    margin: 0%;
 }
