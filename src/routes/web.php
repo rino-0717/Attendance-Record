@@ -6,7 +6,7 @@ use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\StampedController;
 use App\Http\Requests\StampRequest;
-use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\AttendancesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +37,7 @@ Route::post('/start-break', [StampedController::class, 'startBreak'])->name('sta
 Route::post('/end-break', [StampedController::class, 'endBreak'])->name('stamp.endBreak');
 
 // 日付別勤怠情報一覧
-Route::get('/attendances', [AttendanceController::class, 'create']);
+Route::get('/attendances', [AttendancesController::class, 'index']);
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
