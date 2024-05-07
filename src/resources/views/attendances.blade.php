@@ -23,13 +23,10 @@
         </thead>
         <tbody>
             @foreach ($attendances as $attendance)
-            <tr>
-                <td>{{ $attendance->name }}</td>
-                <td>{{ $attendance->work_start_time }}</td>
-                <td>{{ $attendance->work_end_time }}</td>
-                <td>{{ $attendance->break_start_time }}</td>
-                <td>{{ $attendance->work_end_time }}</td>
-            </tr>
+                <p>Work Start Time: {{ $attendance['work_start_time'] }}</p>
+                <p>Work End Time: {{ $attendance['work_end_time'] }}</p>
+                <p>Total Break Hours: {{ $attendance['total_break_hours'] }}</p>
+                <p>Total Work Hours: {{ $attendance['total_work_hours'] }}</p>
             @endforeach
         </tbody>
     </table>
