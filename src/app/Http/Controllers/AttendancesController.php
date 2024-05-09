@@ -18,7 +18,7 @@ class AttendancesController extends Controller
 
         $records = Record::select(
             'user_id',
-            // その日付部分を抽出
+            // 日付部分を抽出
             DB::raw('DATE(COALESCE(work_start_time, work_end_time, break_start_time, break_end_time)) as date'),
             // 勤務開始時間の最小値を取得
             DB::raw('MIN(work_start_time) as work_start_time'),
@@ -35,7 +35,7 @@ class AttendancesController extends Controller
         )
         // 指定された$todayと等しいか確認
         ->whereRaw("DATE(COALESCE(work_start_time, work_end_time, break_start_time, break_end_time)) = ?", [$today])
-        // 各ユーザーについて、特定の日に関するレコードをグループ化
+        // 各ユーザーについて、特定の日付に関するレコードをグループ化
         ->groupBy('user_id', DB::raw('DATE(COALESCE(work_start_time, work_end_time, break_start_time, break_end_time))'))
         ->paginate(5);
         // dd($records);
