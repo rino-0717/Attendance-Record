@@ -3,36 +3,36 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Attendance;
+use Illuminate\Support\Facades\DB;
+use App\Models\Record;
+use App\Models\User;
 use Carbon\Carbon;
+
 
 class AttendancesController extends Controller
 {
     public function index(Request $request)
     {
-        $date = $request->date ?? Carbon::today()->format('Y-m-d');
-        $attendances = Attendance::whereDate('created_at', $date)->paginate(5);
+        $today = Carbon::today()->toDateString();
 
-        $attendanceData = [];
-        foreach ($attendances as $attendance) {
-            $workStartTime = $attendance->work_start_time;
-            $workEndTime = $attendance->work_end_time;
-            $breakStartTime = $attendance->break_start_time;
-            $breakEndTime = $attendance->break_end_time;
-            $totalWorkHours = $workStartTime->diffInHours($workEndTime) - $breakStartTime->diffInHours($breakEndTime);
-
-            $attendanceData[] = [
-                'work_start_time' => $workStartTime,
-                'work_end_time' => $workEndTime,
-                'break_start_time' => $breakStartTime,
-                'break_end_time' => $breakEndTime,
-                'total_work_hours' => $totalWorkHours,
-            ];
-        }
-
-    return view('attendances', [
-        'attendances' => $attendanceData,
-        'pages' => $attendances->lastPage(),
+        $records = Record::select(
+            'user_id',
+            DB::raw('DATE(COALESCE(work_start_time, work_end_time, break_start_time, break_end_time)) as date'),
+            DB::raw('MIN(work_start_time) as work_start_time'),
+            DB::raw('MAX(work_end_time) as work_end_time'),
+            DB::raw('MIN(break_start_time) as break_start_time'),
+            DB::raw('MAX(break_end_time) as break_end_time'),
+            DB::raw('TIMESTAMPDIFF(MINUTE,MIN(work_start_time),MAX(work_end_time))-TIMESTAMPDIFF(MINUTE,MIN(break_start_time),MAX(break_end_time))'),
+            DB::raw('TIMESTAMPDIFF(MINUTE,MIN(break_start_time),MAX(break_end_time)) as break_minute'),
+        )
+        ->whereRaw("DATE(COALESCE(work_start_time, work_end_time, break_start_time, break_end_time)) = ?", [$today])
+        ->groupBy('user_id', DB::raw('DATE(COALESCE(work_start_time, work_end_time, break_start_time, break_end_time))'))
+        ->paginate(5);
+        dd($records);
+        return view("attendances", [
+            'records' => $records,
+            'pages' => $records -> lastPage()
         ]);
     }
+    // dd($records); ddのアイテムを付ける必要
 }

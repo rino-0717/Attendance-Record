@@ -22,11 +22,10 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($attendances as $attendance)
-                <p>Work Start Time: {{ $attendance['work_start_time'] }}</p>
-                <p>Work End Time: {{ $attendance['work_end_time'] }}</p>
-                <p>Total Break Hours: {{ $attendance['total_break_hours'] }}</p>
-                <p>Total Work Hours: {{ $attendance['total_work_hours'] }}</p>
+            @foreach ($records as $record)
+                <tr>
+                    <th>{{ $record->user->name }}</th>
+                </tr>
             @endforeach
         </tbody>
     </table>
@@ -36,7 +35,6 @@
         <span class="visuallyhidden">Previous Page</span>
     </a>
     <ul class="pagination__items">
-        <!-- Pagination Links -->
         @for ($i = 1; $i <= $pages; $i++)
         <li class="{{ request()->page == $i ? 'is-active' : '' }}"><a href="{{ request()->fullUrlWithQuery(['page' => $i]) }}">{{ $i }}</a></li>
         @endfor
