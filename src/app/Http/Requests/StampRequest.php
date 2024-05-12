@@ -24,10 +24,10 @@ class StampRequest extends FormRequest
     public function rules()
     {
         return [
-        'work_start_time' => 'required',// 他の打刻ボタンはwork_start_timeが必要
-        'work_end_time' => 'required_if:work_start_time,!=,null',
-        'break_start_time' => 'required_if:work_start_time,!=,null',
-        'break_end_time' => 'required_if:break_start_time,!=,null',
+        'work_start_time' => 'required|date_format:H:i',// 日を跨いだ時点で翌日の出勤操作に切り替える
+        'work_end_time' => 'required_if:work_start_time,!=,null|date_format:H:i',// 日を跨いだ時点で翌日の出勤操作に切り替える、出勤を押していないと退勤ボタン押せない
+        'break_start_time' => 'required_if:work_start_time,!=,null|date_format:H:i',// 出勤を押していないと休憩ボタン押せない
+        'break_end_time' => 'required_if:break_start_time,!=,null|date_format:H:i',// 休憩開始ボタンを押していないと休憩終了ボタンは押せない
         ];
     }
 
