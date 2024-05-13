@@ -24,35 +24,10 @@ class StampRequest extends FormRequest
     public function rules()
     {
         return [
-        'work_start_time' => 'required|date_format:H:i',// 日を跨いだ時点で翌日の出勤操作に切り替える
-        'work_end_time' => 'required_if:work_start_time,!=,null|date_format:H:i',// 日を跨いだ時点で翌日の出勤操作に切り替える、出勤を押していないと退勤ボタン押せない
-        'break_start_time' => 'required_if:work_start_time,!=,null|date_format:H:i',// 出勤を押していないと休憩ボタン押せない
-        'break_end_time' => 'required_if:break_start_time,!=,null|date_format:H:i',// 休憩開始ボタンを押していないと休憩終了ボタンは押せない
+            'work_start_time' => 'required|date_format:H:i',// 日を跨いだ時点で翌日の出勤操作に切り替える
+            'work_end_time' => 'required_if:work_start_time,!=,null|date_format:H:i',// 日を跨いだ時点で翌日の出勤操作に切り替える、出勤を押していないと退勤ボタン押せない
+            'break_start_time' => 'required_if:work_start_time,!=,null|date_format:H:i',// 出勤を押していないと休憩ボタン押せない
+            'break_end_time' => 'required_if:break_start_time,!=,null|date_format:H:i',// 休憩開始ボタンを押していないと休憩終了ボタンは押せない
         ];
-    }
-
-    public function withValidator($validator)
-    {
-    $validator->after(function ($validator) {
-        if (!$this->input('work_start_time')) {
-            $validator->errors()->add('work_start_time', '勤務開始ボタンを押してください。');
-            }
-
-        if ($this->input('work_end_time') && $this->input('work_start_time')) {
-            $validator->errors()->add('work_end_time', '勤務終了後は再度勤務開始できません。');
-            }
-
-        if ($this->input('break_start_time') && !$this->input('work_start_time')) {
-            $validator->errors()->add('break_start_time', '勤務開始後に休憩を開始してください。');
-            }
-
-        if ($this->input('break_end_time') && !$this->input('break_start_time')) {
-            $validator->errors()->add('break_end_time', '休憩開始後に休憩を終了してください。');
-            }
-
-        if ($this->input('break_end_time') && !$this->input('work_end_time')) {
-            $validator->errors()->add('break_end_time', '休憩終了後に勤務を終了してください。');
-            }
-        });
     }
 }

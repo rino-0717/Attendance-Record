@@ -1,10 +1,19 @@
 @extends('layouts.app2')
+
 @section('css')
 <link href="{{ asset('css/stamp.css') }}" rel="stylesheet">
 @section('css')
+
 @section('content')
 <div class="container">
     <h2>打刻画面</h2>
+    @if (count($errors) > 0)
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{$error}}</li>
+        @endforeach
+    </ul>
+    @endif
     <div class="button-container">
         <form action="{{ route('stamp.store') }}" method="POST">
             @csrf
