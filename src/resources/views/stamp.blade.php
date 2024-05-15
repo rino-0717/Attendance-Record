@@ -7,12 +7,19 @@
 @section('content')
 <div class="container">
     <h2>打刻画面</h2>
+    @if (session('status'))
+        <div class="alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
     @if (count($errors) > 0)
-    <ul>
-        @foreach ($errors->all() as $error)
-        <li>{{$error}}</li>
-        @endforeach
-    </ul>
+        <div class="alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
     @endif
     <div class="button-container">
         <form action="{{ route('stamp.store') }}" method="POST">
