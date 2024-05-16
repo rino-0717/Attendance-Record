@@ -10,6 +10,11 @@ h2 {
     color: #333;
 }
 
+/* ログイン成功時のメッセージ */
+.alert-success{
+    background-color: #85f072;
+}
+
 /* register-form__groupクラスを追加して、CSSの整合性を保つ */
 .register-form__group {
     margin-bottom: 20px;

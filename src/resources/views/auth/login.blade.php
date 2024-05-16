@@ -10,7 +10,7 @@
         <div class="register-form__inner">
             <!-- ログイン成功時のメッセージ -->
             @if(session('success'))
-                <div class="alert alert-success">
+                <div class="alert-success">
                     {{ session('success') }}
                 </div>
             @endif

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\YourModelNamespace\Record;
 
 class StampRequest extends FormRequest
 {
@@ -24,8 +25,8 @@ class StampRequest extends FormRequest
     public function rules()
     {
         return [
-            'work_start_time' => 'required_with_all:work_end_time,break_start_time,break_end_time',
-            'work_end_time' => 'nullable',
+            'work_start_time' => 'required_without_all:work_end_time,break_start_time,break_end_time',
+            'work_end_time' =>  ['required', 'after_or_equal_next_day:work_start_time'],
             'break_start_time' => 'nullable',
             'break_end_time' => 'nullable',
         ];

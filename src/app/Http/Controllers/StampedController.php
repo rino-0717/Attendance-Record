@@ -35,7 +35,7 @@ class StampedController extends Controller
     }
 
     // 勤務終了
-    public function endWork(StampRequest $request)
+    public function endWork(Request $request)
     {
         $record = new Record();
         $record->user_id = auth()->user()->id; // 認証済みユーザーのID
@@ -46,7 +46,7 @@ class StampedController extends Controller
     }
 
     // 休憩開始
-    public function startBreak(StampRequest $request)
+    public function startBreak(Request $request)
     {
         $record = new Record();
         $record->user_id = auth()->user()->id; // 認証済みユーザーのID
@@ -57,7 +57,7 @@ class StampedController extends Controller
     }
 
     // 休憩終了
-    public function endBreak(StampRequest $request)
+    public function endBreak(Request $request)
     {
         $record = new Record();
         $record->user_id = auth()->user()->id; // 認証済みユーザーのID
@@ -65,30 +65,5 @@ class StampedController extends Controller
         $record->type = 'break_end';
         $record->save();
         return back()->with('status', '休憩終了が記録されました。');
-    }
-
-    public function withValidator($validator)
-    {
-        $validator->after(function ($validator) {
-            if (!$this->input('work_start_time')) {
-                $validator->errors()->add('work_start_time', '勤務開始ボタンを押してください。');
-                }
-
-            if ($this->input('work_end_time') && $this->input('work_start_time')) {
-                $validator->errors()->add('work_end_time', '勤務終了後は再度勤務開始できません。');
-                }
-
-            if ($this->input('break_start_time') && !$this->input('work_start_time')) {
-                $validator->errors()->add('break_start_time', '勤務開始後に休憩を開始してください。');
-                }
-
-            if ($this->input('break_end_time') && !$this->input('break_start_time')) {
-                $validator->errors()->add('break_end_time', '休憩開始後に休憩を終了してください。');
-                }
-
-            if ($this->input('break_end_time') && !$this->input('work_end_time')) {
-                $validator->errors()->add('break_end_time', '休憩終了後に勤務を終了してください。');
-                }
-        });
     }
 }
