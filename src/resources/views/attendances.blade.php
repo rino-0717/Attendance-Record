@@ -2,7 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/attendance.css') }}">
-@end
+@endsection
 
 @section('content')
 <div class="date-picker">

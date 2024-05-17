@@ -26,7 +26,7 @@ class StampRequest extends FormRequest
     {
         return [
             'work_start_time' => 'required_without_all:work_end_time,break_start_time,break_end_time',
-            'work_end_time' =>  ['required', 'after_or_equal_next_day:work_start_time'],
+            'work_end_time' => 'nullable',
             'break_start_time' => 'nullable',
             'break_end_time' => 'nullable',
         ];
