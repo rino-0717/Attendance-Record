@@ -10,9 +10,16 @@ h2 {
     color: #333;
 }
 
+.register-form__inner{
+    text-align: center;
+}
 /* ログイン成功時のメッセージ */
 .alert-success{
-    background-color: #85f072;
+    background-color: #a0c6f1;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    width: 100%;
+    padding: 8px;
 }
 
 /* register-form__groupクラスを追加して、CSSの整合性を保つ */

@@ -28,5 +28,6 @@ Laravel8.x
 
 # 環境構築
 アカウントの種類（テストユーザー）
-test01
-test1@test
+ユーザー名：test1
+メールアドレス：test1@test
+パスワード：test1@test
