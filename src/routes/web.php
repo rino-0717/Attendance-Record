@@ -26,7 +26,7 @@ Route::post('/register', [RegisteredUserController::class, 'register']);
 
 // ログイン
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
-Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login.store');
+Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login.store');
 
 // 打刻
 Route::get('/', [StampedController::class, 'create'])->name('stamps.create');

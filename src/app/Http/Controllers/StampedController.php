@@ -66,4 +66,27 @@ class StampedController extends Controller
         $record->save();
         return back()->with('status', '休憩終了が記録されました。');
     }
+
+    public function displayPunchInPage()
+    {
+    $now = Carbon::now();
+    $cutoffHour = 0; // 勤務日を決定する基準時刻（例：午前0時）
+
+    // 現在時刻が基準時刻より前ならば前日の日付を使用
+    if ($now->hour < $cutoffHour) {
+        $workDate = $now->subDay()->toDateString();
+    } else {
+        $workDate = $now->toDateString();
+    }
+
+    // 出勤記録の作成
+    $record = new Record();
+    $record->user_id = auth()->user()->id; // 認証済みユーザーのID
+    $record->work_start_time = $now; // 現在の時刻を保存
+    $record->work_date = $workDate; // 計算された勤務日
+    $record->type = 'work_start'; // 勤務開始のタイプを設定
+    $record->save(); // データベースに保存
+
+    return back()->with('status', '勤務開始が記録されました。');
+    }
 }
