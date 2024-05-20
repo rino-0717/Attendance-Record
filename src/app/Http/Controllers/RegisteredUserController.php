@@ -35,6 +35,6 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        return redirect()->route('login')->with('success', '登録が完了しました。');
+        return redirect()->route('/login')->with('success', '登録が完了しました。');
     }
 }

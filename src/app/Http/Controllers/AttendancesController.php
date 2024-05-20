@@ -41,7 +41,7 @@ class AttendancesController extends Controller
         ->paginate(5);
         // dd($records);
 
-        return view("attendances", [
+        return view("/attendance", [
             'records' => $records,
             'pages' => $records -> lastPage()
         ]);

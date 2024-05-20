@@ -13,7 +13,7 @@ class StampedController extends Controller
     // 打刻ページの表示
     public function create()
     {
-        return view('/stamp'); // 打刻ページのビューを表示
+        return view('stamp'); // 打刻ページのビューを表示
     }
 
     // 日を跨いだ時点で翌日の出勤操作に切り替える

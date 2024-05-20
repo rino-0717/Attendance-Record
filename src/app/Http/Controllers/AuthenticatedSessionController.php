@@ -23,7 +23,7 @@ class AuthenticatedSessionController extends Controller
         ]);
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/stamp'); // ログイン成功時のリダイレクト先
+            return redirect()->intended('/'); // ログイン成功時のリダイレクト先
         }
         return back()->withErrors([
             'email' => '登録されたメールアドレスと一致しません。',
