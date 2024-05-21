@@ -17,8 +17,8 @@
             <h2>Atte</h2>
         </div>
             <div class="header-prompt">
-                <a href="/stamp">打刻ページ</a>
-                <a href="/attendances">日付一覧</a>
+                <a href="/">打刻ページ</a>
+                <a href="/attendance">日付一覧</a>
                 <a href="/login">ログアウト</a>
             </div>
     </div>

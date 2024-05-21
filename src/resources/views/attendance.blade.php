@@ -25,10 +25,10 @@
         @foreach ($records as $record)
         <tr>
             <td>{{ $record->user->name }}</td>
-            <td>{{ $record->work_start_time }}</td>
-            <td>{{ $record->work_end_time }}</td>
-            <td>{{ intdiv($record->break_minutes, 60) }}時間{{ $record->break_minutes % 60 }}分</td>
-            <td>{{ intdiv($record->work_minutes, 60) }}時間{{ $record->work_minutes % 60 }}分</td>
+            <td>{{ \Carbon\Carbon::parse($record->work_start_time)->format('H:i:s') }}</td>
+            <td>{{ \Carbon\Carbon::parse($record->work_end_time)->format('H:i:s') }}</td>
+            <td>{{ gmdate('H:i:s', $record->break_minutes * 60) }}</td>
+            <td>{{ gmdate('H:i:s', $record->work_minutes * 60) }}</td>
         </tr>
         @endforeach
         </tbody>

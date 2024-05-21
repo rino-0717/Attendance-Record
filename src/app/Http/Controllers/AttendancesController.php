@@ -17,6 +17,8 @@ class AttendancesController extends Controller
         // 現在の日付を$todayに格納
         $today = Carbon::today()->toDateString();
 
+        $attendances = Record::with('user')->get();
+
         $records = Record::select(
             'user_id',
             // 日付部分を抽出

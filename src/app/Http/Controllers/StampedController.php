@@ -16,13 +16,6 @@ class StampedController extends Controller
         return view('stamp'); // 打刻ページのビューを表示
     }
 
-    // 日を跨いだ時点で翌日の出勤操作に切り替える
-    public function punchIn()
-    {
-        $now = Carbon::now();
-        $cutoffHour = 0; // 勤務日を決定する基準時刻（例：午前0時）
-    }
-
         // 勤務開始
     public function store(StampRequest $request)
     {
@@ -67,16 +60,17 @@ class StampedController extends Controller
         return back()->with('status', '休憩終了が記録されました。');
     }
 
-    public function displayPunchInPage()
+    // 日を跨いだ時点で翌日の出勤操作に切り替える
+    public function punchIn(Request $request)
     {
     $now = Carbon::now();
     $cutoffHour = 0; // 勤務日を決定する基準時刻（例：午前0時）
 
     // 現在時刻が基準時刻より前ならば前日の日付を使用
     if ($now->hour < $cutoffHour) {
-        $workDate = $now->subDay()->toDateString();
+        $workDate = $now->subDay()->toDateString(); // 翌日の日付を取得
     } else {
-        $workDate = $now->toDateString();
+        $workDate = $now->toDateString(); // 当日の日付を取得
     }
 
     // 出勤記録の作成
