@@ -38,7 +38,7 @@ Route::post('/start-break', [StampedController::class, 'startBreak'])->name('sta
 Route::post('/end-break', [StampedController::class, 'endBreak'])->name('stamp.endBreak');
 
 // 日付別勤怠情報一覧
-Route::get('/attendance', [AttendancesController::class, 'index']);
+Route::get('/attendance', [AttendancesController::class, 'index'])->name('attendance.index');
 
-
+// ホーム
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

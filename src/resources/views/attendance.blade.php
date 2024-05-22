@@ -24,7 +24,6 @@
         <tbody>
         @foreach ($records as $record)
         <tr>
-            
             <td>{{ $record->user->name }}</td>
             <td>{{ \Carbon\Carbon::parse($record->work_start_time)->format('H:i:s') }}</td>
             <td>{{ $record->work_end_time ? \Carbon\Carbon::parse($record->work_end_time)->format('H:i:s') : '00:00:00' }}</td>
