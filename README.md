@@ -1,7 +1,7 @@
 # アプリケーション名
 Attendance-Records
-概要説明：勤怠管理システム
-![打刻画面](User/rino/Desktop/打刻画面png "打刻画面")
+- 概要説明：勤怠管理システム
+![打刻画面](https://github.com/rino-0717/Attendance-Record/assets/157961363/64b513da-c0e6-4a5b-aa78-21eaee464384)
 
 ## 作成した目的
 人事評価のため
@@ -23,18 +23,18 @@ Attendance-Records
 - Mysql 8.0.26
 
 ## テーブル設計図
-![テーブル仕様書](User/rino/Desktop/テーブル仕様書png "テーブル仕様書")
+![テーブル仕様書](https://github.com/rino-0717/Attendance-Record/assets/157961363/ea0a8120-f331-45d6-b644-bccc0d111762)
 
 ## ER図
-![ER図](User/rino/Desktop/ER図png "ER図")
+![ER図](https://github.com/rino-0717/Attendance-Record/assets/157961363/da799f1d-313b-4c77-89c9-1eb551435a67)
 
 # 環境構築
-- Dockerビルド
+Dockerビルド
 - 1.git clone git@github.com:
 - 2.DockerDesktopアプリを立ち上げる
 - 3.docker-compose up -d --build
 
-- Laravel環境構築
+Laravel環境構築
 - 1.docker-compose exec php bash
 - 2.composer install
 - 3.「.env.example」ファイルを 「.env」ファイルに命名を変更。または、新しく.envファイルを作成
@@ -49,7 +49,7 @@ Attendance-Records
 - 6.マイグレーションの実行：php artisan migrate
 - 7.シーディングの実行：php artisan db:seed
 
-- アカウントの種類（テストユーザー）
+アカウントの種類（テストユーザー）
 - ユーザー名：test1
 - メールアドレス：test1@test
 - パスワード：test1@test
