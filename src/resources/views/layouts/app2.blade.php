@@ -19,8 +19,11 @@
             <div class="header-prompt">
                 <a href="/">打刻ページ</a>
                 <a href="/attendance">日付一覧</a>
-                <a href="/login">ログアウト</a>
-            </div>
+                <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                @csrf
+                <button type="submit" style="background: none; border: none; color: inherit; cursor: pointer; padding: 0; font: inherit;">ログアウト</button>
+            </form>
+        </div>
     </div>
 
     <main>

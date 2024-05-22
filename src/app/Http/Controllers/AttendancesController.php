@@ -17,8 +17,6 @@ class AttendancesController extends Controller
         // 現在の日付を$todayに格納
         $today = Carbon::today()->toDateString();
 
-        $attendances = Record::with('user')->get();
-
         $records = Record::select(
             'user_id',
             // 日付部分を抽出
@@ -34,7 +32,7 @@ class AttendancesController extends Controller
             // 勤務時間（休憩時間を除いた時間）を計算
             DB::raw('TIMESTAMPDIFF(MINUTE, MIN(break_start_time), MAX(break_end_time)) as break_minutes'),
             // 休憩時間の差分を計算
-            DB::raw('TIMESTAMPDIFF(MINUTE, MIN(work_start_time), MAX(work_end_time)) - TIMESTAMPDIFF(MINUTE, MIN(break_start_time), MAX(break_end_time)) as work_minutes')
+            DB::raw('TIMESTAMPDIFF(MINUTE, MIN(work_start_time), MAX(work_end_time)) - IFNULL(TIMESTAMPDIFF(MINUTE, MIN(break_start_time), MAX(break_end_time)), 0) as work_minutes')
         )
         // 指定された$todayと等しいか確認
         ->whereRaw("DATE(COALESCE(work_start_time, work_end_time, break_start_time, break_end_time)) = ?", [$today])

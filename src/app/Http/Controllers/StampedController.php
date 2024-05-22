@@ -16,26 +16,36 @@ class StampedController extends Controller
         return view('stamp'); // 打刻ページのビューを表示
     }
 
-        // 勤務開始
-    public function store(StampRequest $request)
+
+
+    // 勤務開始の処理
+    public function punchIn(Request $request)
     {
-        $record = new Record();
-        $record->user_id = auth()->user()->id; // 認証済みユーザーのID
-        $record->work_start_time = now(); // 現在の時刻を保存
-        $record->type = 'work_start'; // 勤務開始のタイプを設定
-        $record->save(); // データベースに保存
-        return back()->with('status', '勤務開始が記録されました。');
+        $now = Carbon::now();
+        $userId = $request->user()->id;
+
+        // 勤務開始のレコードを作成
+        Record::create([
+            'user_id' => $userId,
+            'work_start_time' => $now,
+            'type' => 'work_start', // 勤務開始のタイプを設定
+        ]);
+        return response()->json(['message' => '勤務開始が登録されました。']);
     }
 
-    // 勤務終了
-    public function endWork(Request $request)
+    // 勤務終了の処理
+    public function punchOut(Request $request)
     {
-        $record = new Record();
-        $record->user_id = auth()->user()->id; // 認証済みユーザーのID
-        $record->work_end_time = now();
-        $record->type = 'work_end';
-        $record->save();
-        return back()->with('status', '勤務終了が記録されました。');
+        $now = Carbon::now();
+        $userId = $request->user()->id;
+
+        // 勤務終了のレコードを作成
+        Record::create([
+            'user_id' => $userId,
+            'work_end_time' => $now,
+            'type' => 'work_end', // 勤務終了のタイプを設定
+        ]);
+        return response()->json(['message' => '勤務終了が登録されました。']);
     }
 
     // 休憩開始
@@ -60,8 +70,7 @@ class StampedController extends Controller
         return back()->with('status', '休憩終了が記録されました。');
     }
 
-    // 日を跨いだ時点で翌日の出勤操作に切り替える
-    public function punchIn(Request $request)
+    public function displayPunchInPage()
     {
     $now = Carbon::now();
     $cutoffHour = 0; // 勤務日を決定する基準時刻（例：午前0時）
