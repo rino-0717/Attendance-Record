@@ -51,6 +51,10 @@ th {
     padding: 10px;
 }
 
+.date-picker h2 {
+    margin: 0 20px; /* ボタンと日付の間にスペースを追加 */
+}
+
 .arrow-btn {
     border: 1px solid #100cdc;
     color: #100cdc;

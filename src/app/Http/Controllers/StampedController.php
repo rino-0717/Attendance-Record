@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Record;
-use App\Models\User;
-use App\Http\Requests\StampRequest;
 use Carbon\Carbon;
 
 class StampedController extends Controller
@@ -15,8 +13,6 @@ class StampedController extends Controller
     {
         return view('stamp'); // 打刻ページのビューを表示
     }
-
-
 
     // 勤務開始の処理
     public function punchIn(Request $request)
@@ -48,7 +44,7 @@ class StampedController extends Controller
         return response()->json(['message' => '勤務終了が登録されました。']);
     }
 
-    // 休憩開始
+    // 休憩開始の処理
     public function startBreak(Request $request)
     {
         $record = new Record();
@@ -59,7 +55,7 @@ class StampedController extends Controller
         return back()->with('status', '休憩開始が記録されました。');
     }
 
-    // 休憩終了
+    // 休憩終了の処理
     public function endBreak(Request $request)
     {
         $record = new Record();
@@ -70,26 +66,14 @@ class StampedController extends Controller
         return back()->with('status', '休憩終了が記録されました。');
     }
 
-    public function displayPunchInPage()
+    // 勤務開始の処理 (store method)
+    public function store(Request $request)
     {
-    $now = Carbon::now();
-    $cutoffHour = 0; // 勤務日を決定する基準時刻（例：午前0時）
-
-    // 現在時刻が基準時刻より前ならば前日の日付を使用
-    if ($now->hour < $cutoffHour) {
-        $workDate = $now->subDay()->toDateString(); // 翌日の日付を取得
-    } else {
-        $workDate = $now->toDateString(); // 当日の日付を取得
-    }
-
-    // 出勤記録の作成
-    $record = new Record();
-    $record->user_id = auth()->user()->id; // 認証済みユーザーのID
-    $record->work_start_time = $now; // 現在の時刻を保存
-    $record->work_date = $workDate; // 計算された勤務日
-    $record->type = 'work_start'; // 勤務開始のタイプを設定
-    $record->save(); // データベースに保存
-
-    return back()->with('status', '勤務開始が記録されました。');
+        $record = new Record();
+        $record->user_id = auth()->user()->id; // 認証済みユーザーのID
+        $record->work_start_time = now(); // 現在の時刻を保存
+        $record->type = 'work_start'; // 勤務開始のタイプを設定
+        $record->save(); // データベースに保存
+        return back()->with('status', '勤務開始が記録されました。');
     }
 }

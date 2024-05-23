@@ -33,7 +33,7 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name
 Route::get('/', [StampedController::class, 'create'])->name('stamps.create');
 Route::post('/', [StampedController::class, 'punchIn']);
 Route::post('/record-time', [StampedController::class, 'store'])->name('stamp.store');
-Route::post('/end-work', [StampedController::class, 'endWork'])->name('stamp.endWork');
+Route::post('/end-work', [StampedController::class, 'punchOut'])->name('stamp.endWork');
 Route::post('/start-break', [StampedController::class, 'startBreak'])->name('stamp.startBreak');
 Route::post('/end-break', [StampedController::class, 'endBreak'])->name('stamp.endBreak');
 

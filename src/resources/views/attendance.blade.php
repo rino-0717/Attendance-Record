@@ -6,13 +6,16 @@
 
 @section('content')
 <div class="date-picker">
-    <button class="arrow-btn" id="prev-btn">&lt;</button>
-    <h2 class="date">{{ request()->input('date', now()->format('Y-m-d')) }}</h2>
-    <button class="arrow-btn" id="next-btn">&gt;</button>
+    <form id="date-form" method="GET" action="{{ route('attendance.index') }}">
+        <button class="arrow-btn" id="prev-btn" type="button">&lt;</button>
+        <h2 class="date">{{ $date }}</h2>
+        <button class="arrow-btn" id="next-btn" type="button">&gt;</button>
+        <input type="hidden" name="date" id="date-input" value="{{ $date }}">
+    </form>
 </div>
 <div class="attendance_container">
     <table>
-        <thead> <!-- thead=ヘッダー部分としてグループ化するための要素 -->
+        <thead>
             <tr>
                 <th>名前</th>
                 <th>勤務開始</th>
@@ -49,4 +52,22 @@
         <span class="visuallyhidden">Next Page</span>
     </a>
 </nav>
+@endsection
+
+@section('scripts')
+<script>
+    document.getElementById('prev-btn').addEventListener('click', function() {
+        let currentDate = new Date(document.getElementById('date-input').value);
+        currentDate.setDate(currentDate.getDate() - 1);
+        document.getElementById('date-input').value = currentDate.toISOString().split('T')[0];
+        document.getElementById('date-form').submit();
+    });
+
+    document.getElementById('next-btn').addEventListener('click', function() {
+        let currentDate = new Date(document.getElementById('date-input').value);
+        currentDate.setDate(currentDate.getDate() + 1);
+        document.getElementById('date-input').value = currentDate.toISOString().split('T')[0];
+        document.getElementById('date-form').submit();
+    });
+</script>
 @endsection
