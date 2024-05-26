@@ -39,6 +39,8 @@ Route::post('/end-break', [StampedController::class, 'endBreak'])->name('stamp.e
 
 // 日付別勤怠情報一覧
 Route::get('/attendance', [AttendancesController::class, 'index'])->name('attendance.index');
+Route::post('/attendance/next-day', 'AttendancesController@handleNextDay')->name('attendance.next-day');
+Route::post('/attendance/previous-day', 'AttendancesController@handlePreviousDay')->name('attendance.previous-day');
 
 // ホーム
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

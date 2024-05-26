@@ -22,7 +22,6 @@ class CreateRecordsTable extends Migration
             $table->dateTime('work_end_time')->nullable(); // 勤務終了時間
             $table->dateTime('break_start_time')->nullable(); // 休憩開始時間
             $table->dateTime('break_end_time')->nullable(); // 休憩終了時間
-            $table->timestamp('time')->default(DB::raw('CURRENT_TIMESTAMP'));; // 記録された時間
             $table->timestamps();
             });
     }

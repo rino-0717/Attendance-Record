@@ -31,4 +31,20 @@ class AttendancesController extends Controller
 
         return view('attendance', compact('records', 'date'));
     }
+
+    public function handleNextDay(Request $request)
+    {
+        $date = $request->input('date', Carbon::today()->toDateString());
+        $nextDate = Carbon::parse($date)->addDay()->toDateString();
+
+        return redirect()->route('attendance.index', ['date' => $nextDate]);
+    }
+
+    public function handlePreviousDay(Request $request)
+    {
+        $date = $request->input('date', Carbon::today()->toDateString());
+        $previousDate = Carbon::parse($date)->subDay()->toDateString();
+
+        return redirect()->route('attendance.index', ['date' => $previousDate]);
+    }
 }

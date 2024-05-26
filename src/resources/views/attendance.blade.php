@@ -7,9 +7,10 @@
 @section('content')
 <div class="date-picker">
     <form id="date-form" method="GET" action="{{ route('attendance.index') }}">
-        <button class="arrow-btn" id="prev-btn" type="button">&lt;</button>
+        @csrf
+        <button class="arrow-btn" id="prev-btn" type="submit">&lt;</button>
         <h2 class="date">{{ $date }}</h2>
-        <button class="arrow-btn" id="next-btn" type="button">&gt;</button>
+        <button class="arrow-btn" id="next-btn" type="submit">&gt;</button>
         <input type="hidden" name="date" id="date-input" value="{{ $date }}">
     </form>
 </div>

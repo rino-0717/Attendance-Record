@@ -50,6 +50,6 @@ Laravel環境構築
 - 7.シーディングの実行：php artisan db:seed
 
 アカウントの種類（テストユーザー）
-- ユーザー名：test1,test2,test3,test4,test5,test6,test7
-- メールアドレス：test1@test,test2@test,test3@test,test4@test,test5@test,test6@test,test7@test
-- パスワード：test1@test,test2@test,test3@test,test4@test,test5@test,test6@test,test7@test
+- ユーザー名：test,test2,test3,test4,test5,test6,test7
+- メールアドレス：test@test,test2@test,test3@test,test4@test,test5@test,test6@test,test7@test
+- パスワード：test@test,test2@test,test3@test,test4@test,test5@test,test6@test,test7@test
