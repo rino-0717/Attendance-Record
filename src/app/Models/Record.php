@@ -10,6 +10,15 @@ class Record extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'work_start_time',
+        'work_end_time',
+        'break_start_time',
+        'break_end_time',
+        'type',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
