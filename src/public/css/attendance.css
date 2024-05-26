@@ -5,6 +5,11 @@ body {
     background-color: #f4f4f4;
 }
 
+form, date-form{
+    display: flex;
+    margin: 40px;
+}
+
 .date {
     display: flex;
     text-align: center;
