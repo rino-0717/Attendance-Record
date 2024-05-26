@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use App\Models\Record;
 use Carbon\Carbon;
 
@@ -26,7 +27,7 @@ class StampedController extends Controller
             'work_start_time' => $now,
             'type' => 'work_start', // 勤務開始のタイプを設定
         ]);
-        return response()->json(['message' => '勤務開始が登録されました。']);
+        return redirect()->back()->with('status', '勤務開始が登録されました。');
     }
 
     // 勤務終了の処理
@@ -41,7 +42,7 @@ class StampedController extends Controller
             'work_end_time' => $now,
             'type' => 'work_end', // 勤務終了のタイプを設定
         ]);
-        return response()->json(['message' => '勤務終了が登録されました。']);
+        return redirect()->back()->with('status', '勤務終了が登録されました。');
     }
 
     // 休憩開始の処理
@@ -52,7 +53,7 @@ class StampedController extends Controller
         $record->break_start_time = now();
         $record->type = 'break_start';
         $record->save();
-        return back()->with('status', '休憩開始が記録されました。');
+        return redirect()->back()->with('status', '休憩開始が登録されました。');
     }
 
     // 休憩終了の処理
@@ -63,7 +64,7 @@ class StampedController extends Controller
         $record->break_end_time = now();
         $record->type = 'break_end';
         $record->save();
-        return back()->with('status', '休憩終了が記録されました。');
+        return redirect()->back()->with('status', '休憩終了が登録されました。');
     }
 
     // 勤務開始の処理 (store method)
