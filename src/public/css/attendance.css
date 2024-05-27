@@ -74,8 +74,9 @@ th {
     align-items: center;
     gap: 0 3px;
     list-style-type: none;
-    padding: 0;
+    padding: 1em;
 }
+
 
 .pagination-1 a {
     box-sizing: border-box;
