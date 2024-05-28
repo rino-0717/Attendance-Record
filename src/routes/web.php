@@ -44,3 +44,8 @@ Route::post('/attendance/previous-day', 'AttendancesController@handlePreviousDay
 
 // ホーム
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// ログインしていない状態で打刻画面にアクセスできないように設定
+Route::get('/', function () {
+    return view('welcome');
+})->middleware('auth');

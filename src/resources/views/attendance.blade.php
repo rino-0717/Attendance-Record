@@ -11,7 +11,6 @@
         <button class="arrow-btn" id="prev-btn" type="submit">&lt;</button>
         <h2 class="date">{{ $date }}</h2>
         <button class="arrow-btn" id="next-btn" type="submit">&gt;</button>
-        <input type="hidden" name="date" id="date-input" value="{{ $date }}">
     </form>
 </div>
 <div class="attendance_container">
@@ -40,28 +39,10 @@
 </div>
 <ol class="pagination-1">
     <li class="prev"><a href="/attendance"><</a></li>
-        @for ($i = 1; $i <= ($pages ?? 1); $i++)
-                <a href="{{ request()->fullUrlWithQuery(['page' => $i]) }}">{{ $i }}</a>
-            </li>
-        @endfor
+        @foreach($records as $record)
+            <p>{{ $record->name }}</p>
+        @endforeach
+        {{ $records->links() }}
     <li class="next"><a href="/attendance">></a></li>
 </ol>
-@endsection
-
-@section('scripts')
-<script>
-    document.getElementById('prev-btn').addEventListener('click', function() {
-        let currentDate = new Date(document.getElementById('date-input').value);
-        currentDate.setDate(currentDate.getDate() - 1);
-        document.getElementById('date-input').value = currentDate.toISOString().split('T')[0];
-        document.getElementById('date-form').submit();
-    });
-
-    document.getElementById('next-btn').addEventListener('click', function() {
-        let currentDate = new Date(document.getElementById('date-input').value);
-        currentDate.setDate(currentDate.getDate() + 1);
-        document.getElementById('date-input').value = currentDate.toISOString().split('T')[0];
-        document.getElementById('date-form').submit();
-    });
-</script>
 @endsection
