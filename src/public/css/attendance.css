@@ -35,9 +35,11 @@ form, date-form{
     border: 1px solid #100cdc;
     color: #100cdc;
     background-color: #fff;
-    padding: 5px;
-    margin: 0 10px;
+    padding: 4px 5px 5px 12px;
     width: 40px;
+    height: 30px;
+    color: #100cdc;
+    text-decoration: none;
 }
 
 .attendance-container{

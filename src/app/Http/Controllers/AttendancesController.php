@@ -23,8 +23,7 @@ class AttendancesController extends Controller
             DB::raw('MIN(break_start_time) as break_start_time'), // 休憩開始時間の最小値を取得
             DB::raw('MAX(break_end_time) as break_end_time'), // 休憩終了時間の最大値を取得
             DB::raw('TIMESTAMPDIFF(MINUTE, MIN(break_start_time), MAX(break_end_time)) as break_minutes'), // 勤務時間（休憩時間を除いた時間）を計算
-            DB::raw('TIMESTAMPDIFF(MINUTE, MIN(work_start_time), MAX(work_end_time)) - IFNULL(TIMESTAMPDIFF(MINUTE, MIN(break_start_time), MAX(break_end_time)), 0) as work_minutes'), // 休憩時間の差分を計算
-            DB::table('records')->paginate(5),
+            DB::raw('TIMESTAMPDIFF(MINUTE, MIN(work_start_time), MAX(work_end_time)) - IFNULL(TIMESTAMPDIFF(MINUTE, MIN(break_start_time), MAX(break_end_time)), 0) as work_minutes') // 休憩時間の差分を計算
         )
         ->whereRaw("DATE(COALESCE(work_start_time, work_end_time, break_start_time, break_end_time)) = ?", [$date])
         ->groupBy('user_id', DB::raw('DATE(COALESCE(work_start_time, work_end_time, break_start_time, break_end_time))'))

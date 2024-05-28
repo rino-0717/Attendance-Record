@@ -15,6 +15,12 @@ class StampedController extends Controller
         return view('stamp'); // 打刻ページのビューを表示
     }
 
+    public function index(Request $request)
+    {
+        $date = $request->input('date', now()->format('Y-m-d'));
+        return view('/attendance', ['date' => $date]);
+    }
+
     // 勤務開始の処理
     public function punchIn(Request $request)
     {

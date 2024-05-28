@@ -8,9 +8,9 @@
 <div class="date-picker">
     <form id="date-form" method="GET" action="{{ route('attendance.index') }}">
         @csrf
-        <button class="arrow-btn" id="prev-btn" type="submit">&lt;</button>
+        <a href="{{ route('attendance.index', ['date' => \Carbon\Carbon::parse($date)->addDay()->format('Y-m-d')]) }}" class="arrow-btn"><</a>
         <h2 class="date">{{ $date }}</h2>
-        <button class="arrow-btn" id="next-btn" type="submit">&gt;</button>
+        <a href="{{ route('attendance.index', ['date' => \Carbon\Carbon::parse($date)->subDay()->format('Y-m-d')]) }}" class="arrow-btn">></a>
     </form>
 </div>
 <div class="attendance_container">
@@ -39,10 +39,10 @@
 </div>
 <ol class="pagination-1">
     <li class="prev"><a href="/attendance"><</a></li>
-        @foreach($records as $record)
-            <p>{{ $record->name }}</p>
-        @endforeach
-        {{ $records->links() }}
+        @for ($i = 1; $i <= ($pages ?? 1); $i++)
+                <a href="{{ request()->fullUrlWithQuery(['page' => $i]) }}">{{ $i }}</a>
+            </li>
+        @endfor
     <li class="next"><a href="/attendance">></a></li>
 </ol>
 @endsection
