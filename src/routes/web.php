@@ -30,10 +30,8 @@ Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('lo
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 
-
 // 打刻
-Route::get('/', [StampedController::class, 'create'])->name('stamps.create');
-Route::post('/', [StampedController::class, 'punchIn']);
+Route::get('/', [StampedController::class, 'create'])->name('stamps.create')->middleware('auth');
 Route::post('/record-time', [StampedController::class, 'store'])->name('stamp.store');
 Route::post('/end-work', [StampedController::class, 'punchOut'])->name('stamp.endWork');
 Route::post('/start-break', [StampedController::class, 'startBreak'])->name('stamp.startBreak');
@@ -44,10 +42,4 @@ Route::get('/attendance', [AttendancesController::class, 'index'])->name('attend
 Route::post('/attendance/next-day', 'AttendancesController@handleNextDay')->name('attendance.next-day');
 Route::post('/attendance/previous-day', 'AttendancesController@handlePreviousDay')->name('attendance.previous-day');
 
-// ホーム
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// ログインしていない状態で打刻画面にアクセスできないように設定
-Route::get('/', function () {
-    return view('welcome');
-})->middleware('auth');

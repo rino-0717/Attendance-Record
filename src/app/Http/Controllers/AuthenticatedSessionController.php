@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\LoginRequest;
+use Illuminate\Http\Request;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -14,7 +15,7 @@ class AuthenticatedSessionController extends Controller
     }
 
     // ユーザーログイン処理
-    public function store(Request $request)
+    public function store(LoginRequest $request)
     {
         $credentials = $request->validate([
             'email' => 'required|email',

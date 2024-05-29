@@ -29,7 +29,9 @@ class AttendancesController extends Controller
         ->groupBy('user_id', DB::raw('DATE(COALESCE(work_start_time, work_end_time, break_start_time, break_end_time))'))
         ->paginate(5);
 
-        return view('attendance', compact('records', 'date'));
+        $pages = $records->lastPage();
+
+        return view('attendance', compact('records', 'date', 'pages'));
     }
 
     public function handleNextDay(Request $request)
@@ -48,3 +50,10 @@ class AttendancesController extends Controller
         return redirect()->route('attendance.index', ['date' => $previousDate]);
     }
 }
+
+
+
+
+
+
+

@@ -15,26 +15,17 @@ class StampedController extends Controller
         return view('stamp'); // 打刻ページのビューを表示
     }
 
-    public function index(Request $request)
+    /// 勤務開始の処理
+    public function store(Request $request)
     {
-        $date = $request->input('date', now()->format('Y-m-d'));
-        return view('/attendance', ['date' => $date]);
+        $record = new Record();
+        $record->user_id = auth()->user()->id; // 認証済みユーザーのID
+        $record->work_start_time = now(); // 現在の時刻を保存
+        $record->type = 'work_start'; // 勤務開始のタイプを設定
+        $record->save(); // データベースに保存
+        return back()->with('status', '勤務開始が記録されました。');
     }
 
-    // 勤務開始の処理
-    public function punchIn(Request $request)
-    {
-        $now = Carbon::now();
-        $userId = $request->user()->id;
-
-        // 勤務開始のレコードを作成
-        Record::create([
-            'user_id' => $userId,
-            'work_start_time' => $now,
-            'type' => 'work_start', // 勤務開始のタイプを設定
-        ]);
-        return redirect()->back()->with('status', '勤務開始が登録されました。');
-    }
 
     // 勤務終了の処理
     public function punchOut(Request $request)
@@ -71,16 +62,5 @@ class StampedController extends Controller
         $record->type = 'break_end';
         $record->save();
         return redirect()->back()->with('status', '休憩終了が登録されました。');
-    }
-
-    // 勤務開始の処理 (store method)
-    public function store(Request $request)
-    {
-        $record = new Record();
-        $record->user_id = auth()->user()->id; // 認証済みユーザーのID
-        $record->work_start_time = now(); // 現在の時刻を保存
-        $record->type = 'work_start'; // 勤務開始のタイプを設定
-        $record->save(); // データベースに保存
-        return back()->with('status', '勤務開始が記録されました。');
     }
 }

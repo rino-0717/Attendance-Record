@@ -8,9 +8,9 @@
 <div class="date-picker">
     <form id="date-form" method="GET" action="{{ route('attendance.index') }}">
         @csrf
-        <a href="{{ route('attendance.index', ['date' => \Carbon\Carbon::parse($date)->addDay()->format('Y-m-d')]) }}" class="arrow-btn"><</a>
+        <a href="{{ route('attendance.index', ['date' => \Carbon\Carbon::parse($date)->subDay()->format('Y-m-d')]) }}" class="arrow-btn"><</a>
         <h2 class="date">{{ $date }}</h2>
-        <a href="{{ route('attendance.index', ['date' => \Carbon\Carbon::parse($date)->subDay()->format('Y-m-d')]) }}" class="arrow-btn">></a>
+        <a href="{{ route('attendance.index', ['date' => \Carbon\Carbon::parse($date)->addDay()->format('Y-m-d')]) }}" class="arrow-btn">></a>
     </form>
 </div>
 <div class="attendance_container">
@@ -38,11 +38,12 @@
     </table>
 </div>
 <ol class="pagination-1">
-    <li class="prev"><a href="/attendance"><</a></li>
+    <li class="prev"><a href="{{ request()->fullUrlWithQuery(['page' => max(1, request()->get('page', 1) - 1), 'date' => $date]) }}"><</a></li>
         @for ($i = 1; $i <= ($pages ?? 1); $i++)
-                <a href="{{ request()->fullUrlWithQuery(['page' => $i]) }}">{{ $i }}</a>
+            <li>
+                <a href="{{ request()->fullUrlWithQuery(['page' => $i, 'date' => $date]) }}">{{ $i }}</a>
             </li>
         @endfor
-    <li class="next"><a href="/attendance">></a></li>
+    <li class="next"><a href="{{ request()->fullUrlWithQuery(['page' => min($pages, request()->get('page', 1) + 1), 'date' => $date]) }}">></a></li>
 </ol>
 @endsection
