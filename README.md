@@ -23,7 +23,7 @@ Attendance-Records
 - Mysql 8.0.26
 
 ## テーブル設計図
-![テーブル仕様書](https://github.com/rino-0717/Attendance-Record/assets/157961363/ea0a8120-f331-45d6-b644-bccc0d111762)
+![テーブル仕様書](https://github.com/rino-0717/Attendance-Record/assets/157961363/309410e4-bf87-4e3c-9245-54e3fffc44fe)
 
 ## ER図
 ![ER図](https://github.com/rino-0717/Attendance-Record/assets/157961363/da799f1d-313b-4c77-89c9-1eb551435a67)
