@@ -25,7 +25,7 @@ class LoginRequest extends FormRequest
     {
         return [
             'email' => 'required|string|email|max:191|exists:users,email',
-            'password' => 'required|string|min:8|max:191',
+            'password' => 'required|string|min:8|unique:users|max:191',
         ];
     }
 
@@ -33,8 +33,10 @@ class LoginRequest extends FormRequest
     {
         return [
             'email.required' => 'メールアドレスを入力してください',
-            'email.unique' => '入力されたメールアドレスはは既に使用されています',
+            'email.email' => 'メールアドレスのアカウントが見つかりません',
+            'email.exists' => 'メールアドレスが正しくありません',
             'password.required'=> 'パスワードを入力してください',
+            'password.unique'=> 'パスワードが正しくありません。',
         ];
     }
 }

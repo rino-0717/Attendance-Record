@@ -31,7 +31,7 @@ class StampedController extends Controller
     public function punchOut(Request $request)
     {
         $now = Carbon::now();
-        $userId = $request->user()->id;
+        $userId = auth()->user()->id;
 
         // 勤務終了のレコードを作成
         Record::create([

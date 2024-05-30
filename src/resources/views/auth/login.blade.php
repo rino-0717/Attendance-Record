@@ -18,19 +18,19 @@
             @csrf
             <div class="register-form__group">
                 <input class="register-form__input" type="mail" name="email" id="email" placeholder="メールアドレス">
-                <p class="register-form__error-message">
-                @error('email')
-                {{ $message }}
-                @enderror
+                <p class="register-form__error-message" style="text-align: left;">
+                    @error('email')
+                        {{ $message }}
+                    @enderror
                 </p>
-        </div>
-        <div class="register-form__group">
-            <input class="register-form__input" type="password" name="password" id="password" placeholder="パスワード">
-            <p class="register-form__error-message">
-            @error('password')
-            {{ $message }}
-            @enderror
-            </p>
+            </div>
+            <div class="register-form__group">
+                <input class="register-form__input" type="password" name="password" id="password" placeholder="パスワード">
+                <p class="register-form__error-message" style="text-align: left;">
+                    @error('password')
+                        {{ $message }}
+                    @enderror
+                </p>
         </div>
         <div class="form-group">
             <button type="submit">ログイン</button>
