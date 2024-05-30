@@ -30,16 +30,20 @@ class StampedController extends Controller
     // 勤務終了の処理
     public function punchOut(Request $request)
     {
-        $now = Carbon::now();
         $userId = auth()->user()->id;
+        $workStartRecord = Record::where('user_id', $userId)->whereNull('work_end_time')->first();
 
-        // 勤務終了のレコードを作成
-        Record::create([
-            'user_id' => $userId,
-            'work_end_time' => $now,
-            'type' => 'work_end', // 勤務終了のタイプを設定
-        ]);
-        return redirect()->back()->with('status', '勤務終了が登録されました。');
+        if ($workStartRecord) {
+            $now = Carbon::now();
+            $workStartRecord->update([
+                'work_end_time' => $now,
+                'type' => 'work_end',
+            ]);
+            return redirect()->back()->with('status', '勤務終了が登録されました。');
+        } else {
+            return redirect()->back()->with('error', '勤務開始が記録されていないため、勤務終了を登録できません。');
+
+        }
     }
 
     // 休憩開始の処理
