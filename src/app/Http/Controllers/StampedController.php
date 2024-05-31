@@ -42,19 +42,25 @@ class StampedController extends Controller
             return redirect()->back()->with('status', '勤務終了が登録されました。');
         } else {
             return redirect()->back()->with('error', '勤務開始が記録されていないため、勤務終了を登録できません。');
-
         }
     }
 
     // 休憩開始の処理
     public function startBreak(Request $request)
     {
-        $record = new Record();
-        $record->user_id = auth()->user()->id; // 認証済みユーザーのID
-        $record->break_start_time = now();
-        $record->type = 'break_start';
-        $record->save();
-        return redirect()->back()->with('status', '休憩開始が登録されました。');
+        $userId = auth()->user()->id;
+        $workStartRecord = Record::where('user_id', $userId)->whereNull('break_start_time')->first();
+
+        if ($workStartRecord) {
+            $now = Carbon::now();
+            $workStartRecord->update([
+                'break_start_time' => $now,
+                'type' => 'break_start',
+            ]);
+            return redirect()->back()->with('status', '休憩開始が登録されました。');
+        } else {
+            return redirect()->back()->with('error', '勤務開始が記録されていないため、休憩開始を登録できません。');
+        }
     }
 
     // 休憩終了の処理
