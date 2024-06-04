@@ -47,7 +47,6 @@ Laravel環境構築
     - DB_PASSWORD=laravel_pass
 - 5.アプリケーションキーの作成：php artisan key:generate
 - 6.マイグレーションの実行：php artisan migrate
-- 7.シーディングの実行：php artisan db:seed
 
 アカウントの種類（テストユーザー）
 - ユーザー名：test,test2,test3,test4,test5,test6,test7,test8
